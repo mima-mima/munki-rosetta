@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>catalogs</key>
+	<array>
+		<string>production</string>
+		<string>testing</string>
+	</array>
+	<key>installcheck_script</key>
+	<string>#!/bin/zsh
+cat /Library/Receipts/InstallHistory.plist|grep osetta &gt; /tmp/rosetta.txt
+if [ -e /tmp/rosetta.txt ]; then
+ exit 1
+fi
+exit 0</string>
+	<key>installer_type</key>
+	<string>nopkg</string>
+	<key>name</key>
+	<string>Rosetta</string>
+	<key>postinstall_script</key>
+	<string>#!/bin/zsh
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license
+exit</string>
+	<key>unattended_install</key>
+	<true/>
+	<key>version</key>
+	<string>1</string>
+</dict>
+</plist>
